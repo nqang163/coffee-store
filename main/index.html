@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hạt Rang – Cà phê rang tươi</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header><div class="wrap bar">
+  <a class="logo" id="logo" href="#">Hạt Rang</a>
+  <div class="actions">
+    <a class="lnk" id="adm" href="admin.html" hidden>Quản trị</a>
+    <button class="lnk" id="theme" aria-label="Đổi giao diện sáng/tối">Sáng/Tối</button>
+    <button class="lnk" id="myOrders" hidden>Đơn của tôi</button>
+    <button class="lnk" id="acct">Đăng nhập</button>
+    <button class="cart-btn" id="openCart">Giỏ hàng <b id="count">0</b></button>
+  </div>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+  <div>
+    <h1>Cà phê rang trong tuần, giao tới tận cửa.</h1>
+    <p>Dùng mã GIAM10 giảm 10%. Miễn phí giao hàng cho đơn từ 300.000 ₫.</p>
+    <a class="btn" href="#san-pham">Xem sản phẩm</a>
+  </div>
+  <div class="roasts" aria-hidden="true"><div>Rang nhạt</div><div>Rang vừa</div><div>Rang đậm</div></div>
+</div></section>
+
+<section class="wrap" id="san-pham">
+  <div class="toolbar"><h2>Sản phẩm</h2>
+    <div class="tools">
+      <input type="search" id="q" placeholder="Tìm sản phẩm…" aria-label="Tìm sản phẩm">
+      <select id="sort" aria-label="Sắp xếp">
+        <option value="">Mặc định</option><option value="asc">Giá tăng dần</option><option value="desc">Giá giảm dần</option>
+        <option value="rate">Đánh giá cao nhất</option>
+      </select>
+      <label class="chk"><input type="checkbox" id="instock"> Còn hàng</label>
+    </div>
+  </div>
+  <div class="chips" id="chips"></div>
+  <div class="grid" id="grid"></div>
+  <button class="chip more" id="more" hidden>Xem thêm sản phẩm</button>
+</section>
+</main>
+
+<footer><div class="wrap">Hạt Rang · 37 Nghĩa Thành, TP. Hồ Chí Minh · 0941 868 661</div></footer>
+
+<div class="overlay" id="overlay"></div>
+<aside id="drawer" aria-label="Giỏ hàng">
+  <div class="drawer-head"><h2>Giỏ hàng</h2><button class="x" id="closeCart" aria-label="Đóng">×</button></div>
+  <div class="items" id="items"></div>
+  <div class="drawer-foot">
+    <div class="field"><input id="cp" placeholder="Mã giảm giá (ví dụ GIAM10)" aria-label="Mã giảm giá"></div>
+    <p class="msg" id="cmsg"></p>
+    <div id="sum"></div>
+    <button class="btn block" id="checkout" disabled>Đặt hàng</button>
+  </div>
+</aside>
+
+<dialog id="pd" class="wide"><div id="pdb"></div><p class="center"><button class="lnk" data-close>Đóng</button></p></dialog>
+
+<dialog id="auth"><form id="af">
+  <h2 id="at">Đăng nhập</h2>
+  <label class="field" id="nm" hidden>Họ và tên<input name="name" autocomplete="name"></label>
+  <label class="field">Email<input name="email" type="email" required autocomplete="email"></label>
+  <label class="field">Mật khẩu<input name="pass" type="password" required minlength="6" autocomplete="current-password"></label>
+  <p class="msg" id="aerr"></p>
+  <button class="btn block">Tiếp tục</button>
+  <p class="center"><button type="button" class="lnk" id="swap">Chưa có tài khoản? Đăng ký</button></p>
+  <p class="center"><button type="button" class="lnk" data-close>Đóng</button></p>
+</form></dialog>
+
+<dialog id="prof"><form id="pf">
+  <h2>Tài khoản</h2>
+  <label class="field">Họ và tên<input name="name" required></label>
+  <label class="field">Số điện thoại<input name="phone" type="tel" pattern="[0-9 +]{9,14}"></label>
+  <label class="field">Địa chỉ giao hàng<input name="addr"></label>
+  <label class="field">Mật khẩu mới (bỏ trống nếu không đổi)<input name="npass" type="password" minlength="6" autocomplete="new-password"></label>
+  <p class="msg" id="perr"></p>
+  <button class="btn block">Lưu thay đổi</button>
+  <p class="center"><button type="button" class="lnk" id="logout">Đăng xuất</button> <button type="button" class="lnk" data-close>Đóng</button></p>
+</form></dialog>
+
+<dialog id="dlg"><form id="of">
+  <h2>Thông tin giao hàng</h2>
+  <label class="field">Họ và tên<input name="name" required></label>
+  <label class="field">Số điện thoại<input name="phone" type="tel" required pattern="[0-9 +]{9,14}"></label>
+  <label class="field">Địa chỉ<input name="addr" required></label>
+  <label class="field">Thanh toán<select name="pay" id="pay"></select></label>
+  <label class="field">Ghi chú<textarea name="note" rows="2" maxlength="200"></textarea></label>
+  <p class="msg" id="oerr"></p>
+  <button class="btn block">Xác nhận đặt hàng</button>
+  <p class="center"><button type="button" class="lnk" data-close>Hủy</button></p>
+</form></dialog>
+
+<dialog id="done"><div id="doneb"></div></dialog>
+<dialog id="ord" class="wide"><h2>Đơn hàng của tôi</h2><div id="olist"></div><p class="center"><button class="lnk" data-close>Đóng</button></p></dialog>
+
+<div class="toast" id="toast" role="status"></div>
+<script src="js/store.js"></script>
+<script src="js/shop.js"></script>
+</body>
+</html>

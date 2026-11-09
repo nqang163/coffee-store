@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quản trị</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header><div class="wrap bar">
+  <a class="logo" href="admin.html">Quản trị</a>
+  <div class="actions"><a class="lnk" href="index.html">Về cửa hàng</a><button class="lnk" id="out" hidden>Đăng xuất</button></div>
+</div></header>
+<main class="wrap admin">
+  <form id="gate" class="gate" hidden>
+    <h2>Đăng nhập quản trị</h2>
+    <label class="field">Email<input name="email" type="email" required></label>
+    <label class="field">Mật khẩu<input name="pass" type="password" required></label>
+    <p class="msg" id="gerr"></p>
+    <button class="btn block">Đăng nhập</button>
+  </form>
+  <div id="panel" hidden>
+    <div class="tabs" id="tabs"></div>
+    <div id="view"></div>
+  </div>
+</main>
+<div class="toast" id="toast" role="status"></div>
+<script src="js/store.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>
